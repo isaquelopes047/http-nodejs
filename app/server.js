@@ -1,15 +1,10 @@
 const customExpress = require('../config/customExpress');
-const conexao = require('../infraestrutura/conexao');
-/* const Tabelas = require('./infraestrutura/tabelaAtendimento') */
+const http = require('http')
 
-conexao.connect(erro => {
+var server = http.createServer((req, res) => {
+    console.log(server)
+    res.end();
+})
 
-    if(!erro) { 
-        const app = customExpress();
-        console.log('Conectado com o Bando de Dados com sucesso!')
-       /*  Tabelas.init(conexao) */
-        app.listen(process.env.PORT);
-    }
-    else { console.log(erro) };
-
-});
+const app = customExpress();
+app.listen(process.env.PORT);
